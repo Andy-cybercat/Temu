@@ -1,0 +1,16 @@
+import {Router} from 'express'
+const router = Router()
+
+import  from '../servicio/estudianteService.js'
+const Estudiante = new estudianteService()
+
+router.get('/',async(req,res) => {
+    try {
+        const estudiantes = await Estudiante.getEstudiantes()
+        return res.render('views/estudiantes/index',{estudiantes})
+    } catch (err) {
+        console.log('error'+err)
+    }
+})
+
+export default router
